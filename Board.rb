@@ -1,5 +1,5 @@
 class Board
-    attr_accessor :grid
+    attr_accessor :grid, :size
     def initialize(size)
         @size = size
         @grid = Array.new(size) { [] }
@@ -22,10 +22,11 @@ class Board
     end
 
     def [](pos)
-        
+        row, col = pos
+        @grid[row][col]
     end
 
     def []=(pos, value)
-        
+        @grid[pos] = value
     end
 end
