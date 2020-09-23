@@ -42,8 +42,32 @@ class Board
         pos
     end
 
+    def print_board_cord
+        print "  "
+        size.times { |i| print "#{i} " }
+    end
+
+    def print_card(card)
+        if card.revealed?
+            print card.face
+        else
+            print " "
+        end
+        print " "
+    end
+
     def render
-        
+        print_board_cord
+        puts
+        (0...size).each do |row|
+            print "#{row} "
+            (0...size).each do |col|
+                pos = [row, col]
+                card = self[pos]
+                print_card(card)
+            end
+            puts
+        end
     end
 
     def won?
