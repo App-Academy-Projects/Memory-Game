@@ -10,9 +10,30 @@ class Game
 
     def play
         while !over?
-            # ...
+            clear_and_render
+            guessed_pos = make_guess
+            @board.reveal(guessed_pos)
+            if @previous_guess == nil
+                @previous_guess = guessed_pos
+                next
+            elsif @board[guessed_pos] != @board[@previous_guess] 
+                clear_and_render
+                sleep(2)
+                hide_cards(guessed_pos, @previous_guess)
+            end
+            @previous_guess = nil
         end
         puts "You Won!!!"
+    end
+
+    def hide_cards(pos1, pos2)
+        @board[guessed_pos].hide
+        @board[@previous_guess].hide
+    end
+
+    def clear_and_render
+        system("clear")
+        @board.render
     end
 
     def over?
