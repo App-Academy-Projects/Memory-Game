@@ -19,7 +19,7 @@ class Board
     end
     
     def assign_rand_card_to_positions(pos, card)
-        self[pos] = card
+        self[pos] = Card.new(card)
     end
 
     def generate_pos
@@ -27,8 +27,7 @@ class Board
     end
 
     def rand_card
-        card_val = ALPHAPETS.sample
-        Card.new(card_val)
+        ALPHAPETS.sample
     end
 
     def empty_pos?(pos)
@@ -51,8 +50,13 @@ class Board
         
     end
 
-    def reveal
-        
+    def reveal(guessed_pos)
+        self[guessed_pos].reveal
+        self[guessed_pos].face
+    end
+
+    def hide(guessed_pos)
+        self[guessed_pos].hide
     end
 
     def [](pos)
