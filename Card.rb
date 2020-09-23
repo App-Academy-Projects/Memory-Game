@@ -18,7 +18,7 @@ class Card
     end
 
     def ==(other)
-        @face == other
+        @face == other.face
     end
 
     def display
