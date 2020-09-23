@@ -71,18 +71,13 @@ class Board
     end
 
     def won?
-        
+        @grid.all? { |cards| cards.all? { |card| card.revealed? } }
     end
 
     def reveal(guessed_pos)
         card = self[guessed_pos]
         card.reveal
         return card.face
-    end
-
-    def hide(guessed_pos)
-        card = self[guessed_pos]
-        card.hide
     end
 
     def [](pos)
