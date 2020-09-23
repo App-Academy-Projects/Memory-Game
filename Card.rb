@@ -6,22 +6,22 @@ class Card
     end
 
     def hide
-        self.face_up = false
+        @face_up = false
     end
 
     def reveal
-        self.face_up = true
+        @face_up = true
     end
 
     def to_s
-        
+        @face.to_s
     end
 
-    def ==
-        
+    def ==(other)
+        @face == other
     end
 
-    def display_card_info
-        
+    def display
+        puts @face
     end
 end
