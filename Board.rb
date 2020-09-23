@@ -51,12 +51,14 @@ class Board
     end
 
     def reveal(guessed_pos)
-        self[guessed_pos].reveal
-        self[guessed_pos].face
+        card = self[guessed_pos]
+        card.reveal
+        return card.face
     end
 
     def hide(guessed_pos)
-        self[guessed_pos].hide
+        card = self[guessed_pos]
+        card.hide
     end
 
     def [](pos)
