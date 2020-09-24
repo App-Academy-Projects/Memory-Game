@@ -2,6 +2,7 @@ require_relative 'Board'
 
 class Game
     def initialize(size)
+        raise "Invalid size, should be even!" if size % 2 != 0
         @board = Board.new(size)
         @previous_guess = nil
 
@@ -27,8 +28,8 @@ class Game
     end
 
     def hide_cards(pos1, pos2)
-        @board[guessed_pos].hide
-        @board[@previous_guess].hide
+        @board[pos1].hide
+        @board[pos2].hide
     end
 
     def clear_and_render

@@ -77,7 +77,6 @@ class Board
     def reveal(guessed_pos)
         card = self[guessed_pos]
         card.reveal
-        return card.face
     end
 
     def [](pos)
