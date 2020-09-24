@@ -2,8 +2,8 @@ require_relative 'Game'
 
 class HumanPlayer
     attr_accessor :previous_guess
-    def initialize(board)
-        @board = board
+    def initialize(size)
+        @size = size
         @previous_guess = nil
     end
     

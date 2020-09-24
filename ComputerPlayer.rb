@@ -1,7 +1,7 @@
 class ComputerPlayer
     attr_accessor :previous_guess
-    def initialize(board)
-        @board = board
+    def initialize(size)
+        @size = size
         @previous_guess = nil
         @known_cards = {}
         @matched_cards = {}
@@ -53,10 +53,9 @@ class ComputerPlayer
     end
 
     def rand_guess
-        size = @board.size
         guess = nil
         until guess && !@known_cards[guess]
-            guess = [rand(size), rand(size)]
+            guess = [rand(@size), rand(@size)]
         end
         guess
     end

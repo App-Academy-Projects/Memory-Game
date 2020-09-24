@@ -12,9 +12,9 @@ class Game
         @board.populate
         case player_type.downcase
         when 'h'
-            @player = HumanPlayer.new(@board)
+            @player = HumanPlayer.new(@board.size)
         when 'c'
-            @player = ComputerPlayer.new(@board)
+            @player = ComputerPlayer.new(@board.size)
         else
             raise 'Not valid player type, only `h` or `c`'
         end
