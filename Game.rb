@@ -1,18 +1,20 @@
 require_relative 'Board'
+require_relative 'HumanPlayer'
 
 class Game
-    def initialize(size)
+    def initialize(size=4)
         raise "Invalid size, should be even!" if size % 2 != 0
         @board = Board.new(size)
         @previous_guess = nil
 
         @board.populate
     end
-
+    
     def play
+        h = HumanPlayer.new(@board)
         while !over?
             clear_and_render
-            guessed_pos = make_guess
+            guessed_pos = h.make_guess
             @board.reveal(guessed_pos)
             if @previous_guess == nil
                 @previous_guess = guessed_pos
@@ -39,27 +41,5 @@ class Game
 
     def over?
         @board.won?
-    end
-
-    def valid_pos?(pos)
-        size = @board.size
-        return false if not pos.all? { |el| el < size && el >= 0 }
-        card = @board[pos]
-        return !card.revealed?
-    end
-
-    def make_pos(pos)
-        pos = pos[0].to_i, pos[1].to_i
-        pos
-    end
-
-    def make_guess
-        puts
-        print "Enter a position of card you want to flip ex.`1 2`: "
-        guessed_pos = gets.chomp.split
-        raise "Invalid position, should be like `row col`" if guessed_pos.length < 2
-        guessed_pos = make_pos(guessed_pos)
-        raise "Invalid position" if !valid_pos?(guessed_pos)
-        guessed_pos
     end
 end
